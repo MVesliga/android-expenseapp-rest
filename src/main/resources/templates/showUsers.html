@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense app</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container" style="text-align: center">
+    <div th:if="${not #lists.isEmpty(users)}" style="overflow-x: auto;" class="col-md-12 help">
+        <table class="table">
+            <thead>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Password</th>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.firstName}">ime</td>
+                <td th:text="${user.lastName}">prezime</td>
+                <td th:text="${user.email}">email</td>
+                <td th:text="${user.username}">username</td>
+                <td th:text="${user.password}">password</td>
+                <td><button class="btn btn-primary"><a th:href="@{/users/showExpenses(username=${user.username})}" style="color: white; text-decoration: none;">Show expenses</a></button></td>
+                <td><button class="btn btn-primary"><a th:href="@{/users/showIncomes(username=${user.username})}" style="color: white; text-decoration: none;">Show incomes</a></button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p th:if="${#lists.isEmpty(users)}">Nema unesenih korisnika!</p>
+
+</div>
+</body>
+</html>
